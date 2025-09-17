@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: go to api directory
+        run: cd api
+        
       - name: Checkout code
         uses: actions/checkout@v3
 
