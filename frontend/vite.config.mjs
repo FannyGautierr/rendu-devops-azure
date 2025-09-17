@@ -7,5 +7,20 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:7071' 
     }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+    assetsDir: 'assets',
+    outDir: 'dist',
+  },
+  base: './', 
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
   }
 });
