@@ -3,7 +3,7 @@ name: CD - Voting App api
 on:
   push:
     branches: ["main"]
-    paths: ['api/**'] 
+    paths: ['api/**', '.github/workflows/cd-api.yml'] 
 
 jobs:
   build-test:
