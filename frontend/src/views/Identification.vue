@@ -3,6 +3,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
+import apiClient from '../composables/apiHelper';
 
 const isInscription = ref(true);
 
@@ -17,7 +18,7 @@ const router = useRouter();
 
 const submitInscription = async () => {
   try {
-    const res = await axios.post('/api/postUser', {
+    const res = await apiClient.post('/api/postUser', {
       username: pseudo.value,
       email: email.value,
       password: password.value
