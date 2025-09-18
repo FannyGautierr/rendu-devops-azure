@@ -4,14 +4,14 @@ import axios from 'axios';
 
 const voted = ref(false);
 
-const vote = async (choix) => {
+const vote = async (vote) => {
   const userId = localStorage.getItem('userId');
   if (!userId) {
     alert('Veuillez vous identifier.');
     return;
   }
   try {
-    await axios.post('/api/vote', { userId, choix });
+    await axios.post('/api/postVote', { userId, vote });
     voted.value = true;
   } catch (e) {
     alert('Erreur lors du vote');

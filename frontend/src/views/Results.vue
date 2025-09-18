@@ -4,20 +4,19 @@ import axios from 'axios';
 
 const votes = ref([]);
 const loading = ref(true);
+const totalVotes = ref(0)
 const percentOui = ref(0);
 const percentNon = ref(0);
 
 onMounted(async () => {
   try {
-    const res = await axios.get('/api/votes');
-    votes.value = res.data;
-    const oui = votes.value.filter(v => v.choix === 'Oui').length;
-    const non = votes.value.filter(v => v.choix === 'Non').length;
-    const total = votes.value.length;
-    percentOui.value = total ? Math.round((oui / total) * 100) : 0;
-    percentNon.value = total ? Math.round((non / total) * 100) : 0;
+    const res = await axios.get('/api/getVote');
+    votes.value = res.data.votes;
+    totalVotes.value = res.data.totalVotes || 0;
+    percentOui.value = res.data.percentageYes || 0
+    percentNon.value = res.data.percentageNo || 0
   } catch (e) {
-    alert('Erreur lors du chargement des résultats');
+
   } finally {
     loading.value = false;
   }
@@ -31,11 +30,11 @@ onMounted(async () => {
     <div v-else>
       <ul>
         <li v-for="vote in votes" :key="vote.id">
-          <strong>{{ vote.pseudo }}</strong> : {{ vote.choix }}
+          <strong>{{ vote.pseudo }}</strong> : {{ vote.vote }}
         </li>
       </ul>
       <div class="stats">
-        <p>Total votes : {{ votes.length }}</p>
+        <p>Total votes : {{ totalVotes }}</p>
         <p>Oui : {{ percentOui }}%</p>
         <p>Non : {{ percentNon }}%</p>
       </div>

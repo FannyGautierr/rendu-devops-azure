@@ -23,7 +23,7 @@ const submitInscription = async () => {
       email: email.value,
       password: password.value
     });
-    localStorage.setItem('userId', res.data.id);
+    localStorage.setItem('userId', res.data.userId);
     router.push('/vote');
   } catch (e) {
     alert("Erreur lors de l'inscription");
