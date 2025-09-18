@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
-
+import apiClient from '../composables/apiHelper';
 const voted = ref(false);
 
 const vote = async (vote) => {
@@ -11,7 +10,7 @@ const vote = async (vote) => {
     return;
   }
   try {
-    await axios.post('/api/postVote', { userId, vote });
+    await apiClient.post('/vote', { userId, vote });
     voted.value = true;
   } catch (e) {
     alert('Erreur lors du vote');

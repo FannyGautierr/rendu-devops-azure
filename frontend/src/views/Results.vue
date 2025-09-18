@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import apiClient from '../composables/apiHelper';
 
 const votes = ref([]);
 const loading = ref(true);
@@ -10,7 +10,7 @@ const percentNon = ref(0);
 
 onMounted(async () => {
   try {
-    const res = await axios.get('/api/getVote');
+    const res = await apiClient.get('/api/getVote');
     votes.value = res.data.votes;
     totalVotes.value = res.data.totalVotes || 0;
     percentOui.value = res.data.percentageYes || 0
