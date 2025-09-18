@@ -40,3 +40,5 @@ jobs:
           api_location: "api"
           output_location: "" 
           skip_app_build: true
+        env:
+          VITE_APP_API_BASE_URL: ${{ secrets.VITE_APP_API_BASE_URL }}
