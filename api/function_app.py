@@ -17,7 +17,7 @@ import uuid
 
 app = func.FunctionApp()
 
-@app.route(route="postUser", auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="postUser", auth_level=func.AuthLevel.ANONYMOUS, methods=["POST"])
 @app.cosmos_db_output(
     arg_name="outputDocument",
     connection="COSMOS_CONN_STRING",
