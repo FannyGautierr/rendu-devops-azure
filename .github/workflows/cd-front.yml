@@ -30,6 +30,8 @@ jobs:
       - name: Build frontend
         run: pnpm run build
         working-directory: ./frontend
+        env:
+          VITE_APP_API_BASE_URL: ${{ secrets.VITE_APP_API_BASE_URL }}
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
@@ -40,5 +42,3 @@ jobs:
           api_location: "api"
           output_location: "" 
           skip_app_build: true
-        env:
-          VITE_APP_API_BASE_URL: ${{ secrets.VITE_APP_API_BASE_URL }}
