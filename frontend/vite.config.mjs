@@ -17,7 +17,7 @@ export default defineConfig({
     assetsDir: 'assets',
     outDir: 'dist',
   },
-  base: './', 
+  base: '/', 
   resolve: {
     alias: {
       '@': '/src'
