@@ -282,3 +282,6 @@ curl http://localhost:7071/api/getVote
  ![Application Homepage](./screenshots/4.png)
  ![Application Homepage](./screenshots/4.png)
  ![Application Homepage](./screenshots/6.png)
+ ![Application Homepage](./screenshots/7.png)
+ ![Application Homepage](./screenshots/8.png)
+
