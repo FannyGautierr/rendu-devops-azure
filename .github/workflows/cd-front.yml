@@ -11,28 +11,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Download the source code from the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Install Node.js runtime environment
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+      
+      # Install pnpm package manager for faster dependency management
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: latest
 
+      # Install all required dependencies for the frontend application
       - name: Install dependencies
         run: pnpm install
         working-directory: ./frontend
 
+      # Build the frontend application for production deployment
       - name: Build frontend
         run: pnpm run build
         working-directory: ./frontend
         env:
           VITE_APP_API_BASE_URL: ${{ secrets.VITE_APP_API_BASE_URL }}
 
+      # Deploy the built application to Azure Static Web Apps
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
